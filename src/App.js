@@ -57,9 +57,13 @@ const HeroCard = ({ hero, feature }) => {
   );
 };
 
-const HeroTable = ({ heroes, feature }) => {
+const HeroTable = ({ isLoading, heroes, feature }) => {
   if (feature === '' || heroes.length === 0) {
     return null;
+  }
+
+  if (isLoading) {
+    return <div>Loading...</div>
   }
 
   return (
@@ -87,9 +91,11 @@ function App() {
   const [feature, setFeature] = useState("");
   const [pageSize, setPageSize] = useState(20);
   const [offset, setOffset] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    // TODO: handle loading state
+    setIsLoading(true)
+
     fetchHeroesData({ limit: pageSize, offset })
       .then(({ data }) => {
         setHeroes(data.data.results);
@@ -97,11 +103,15 @@ function App() {
       .catch((error) => {
         // TODO: handle error
       })
-  }, [offset, pageSize]);
+      .finally(() => {
+        setIsLoading(false);
+      });
+  }, 
+  [offset, pageSize]);
 
   const handleFeatureSelect = (event) => {
     setFeature(event.target.value)
-  }
+  };
 
   const handlePrev = () => {
     setOffset((curr) => Math.max(0, curr - pageSize));
@@ -116,7 +126,7 @@ function App() {
 
       <FeatureSelect heroes={heroes} onChange={handleFeatureSelect} />
       <PageSelect offset={offset} onPrev={handlePrev} onNext={handleNext} />
-      <HeroTable heroes={heroes} feature={feature} />
+      <HeroTable isLoading={isLoading} heroes={heroes} feature={feature} />
     </div>
   );
 }
