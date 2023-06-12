@@ -1,35 +1,14 @@
 import { useEffect, useState } from 'react';
 import './App.css';
 import { fetchHeroesData } from './fetchHeroesData';
-import { HeroesTable } from "./components";
-import { features } from './constants';
-
-const FeatureSelect = ({ feature, onChange }) => {
-  return (
-    <>
-      <label htmlFor="feature-select">Choose a feature:</label>
-
-      <select
-        name="feature"
-        id="feature-select"
-        onChange={onChange}
-        value={feature}
-      >
-        <option value="">--Please choose an option--</option>
-        {Object.entries(features).map(([key, value]) => (
-          <option key={key} value={value}>
-            {key}
-          </option>
-        ))}
-      </select>
-    </>
-  );
-};
+import { FeatureSelect, HeroesTable } from "./components";
 
 const PageSelect = ({ isFirstPage, onPrev, onNext }) => {
   return (
     <div>
-      <button onClick={onPrev} disabled={isFirstPage}>Prev</button>
+      <button onClick={onPrev} disabled={isFirstPage}>
+        Prev
+      </button>
       <button onClick={onNext}>Next</button>
     </div>
   );
@@ -83,7 +62,11 @@ function App() {
         onPrev={handlePrev}
         onNext={handleNext}
       />
-      <HeroesTable error={error} isLoading={isLoading} heroes={heroes} feature={feature} />
+      <HeroesTable
+        error={error}
+        isLoading={isLoading}
+        heroes={heroes}
+        feature={feature} />
     </div>
   );
 }
