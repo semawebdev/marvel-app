@@ -23,58 +23,72 @@ const getFeature = (hero, feature) => {
   }
 }
 
-const HeroCard = ({hero, feature}) => {
+const HeroCard = ({ hero, feature }) => {
   // TODO: improve the layout
-  return <div>
-    <img alt={hero.name} src={hero.thumbnail.path} />
-    <div>{getFeature(hero, feature)}</div>
-  </div>
-}
+  const thumbnailSrcPath = `${hero.thumbnail.path}/portrait_xlarge.jpg`;
+  return (
+    <div>
+      <img alt={hero.name} src={thumbnailSrcPath} />
+      <div>{getFeature(hero, feature)}</div>
+    </div>
+  );
+};
 
-const HeroTable = ({heroes, feature}) => {
+const HeroTable = ({ heroes, feature }) => {
   if (feature === '' || heroes.length === 0) {
     return null;
   }
 
-  return <div>
-    {heroes.map(hero => <HeroCard hero={hero} feature={feature} />)}
-  </div>
-}
+  return (
+    <div>
+      {heroes.map((hero) => (
+        <HeroCard hero={hero} feature={feature} />
+      ))}
+      <div>Number of heroes displayed: {heroes.length}</div>
+    </div>
+  );
+};
+
 
 function App() {
   const [heroes, setHeroes] = useState([]);
   const [feature, setFeature] = useState("");
+  const [pageSize, setPageSize] = useState(20);
 
   useEffect(() => {
-    fetchHeroesData().then()
-  }, [])
+    // TODO: handle loading state
+    fetchHeroesData({ limit: pageSize })
+      .then(({ data }) => {
+      setHeroes(data.data.results);
+    })
+}, [pageSize])
 
-  const handleSelect = (event) => {
-    setFeature(event.target.value)
-  }
+function handleSelect(event) {
+  setFeature(event.target.value);
+}
 
-  return (
-    <div className="App">
-      
-      <label htmlFor="feature-select">Choose a feature of Marvel heroes: </label>
+return (
+  <div className="App">
 
-      <select
-        name="feature"
-        id="feature-select"
-        onChange={handleSelect}
-        value={feature}
-      >
-        <option value="">Please choose an option below</option>
-        {Object.entries(features).map(([key, value]) => (
-          <option key={key} value={value}>
-            {key}
-          </option>
-        ))}
-      </select>
+    <label htmlFor="feature-select">Choose a feature of Marvel heroes: </label>
 
-      <HeroTable heroes={heroes} feature={feature} />
-    </div>
-  );
+    <select
+      name="feature"
+      id="feature-select"
+      onChange={handleSelect}
+      value={feature}
+    >
+      <option value="">Please choose an option below</option>
+      {Object.entries(features).map(([key, value]) => (
+        <option key={key} value={value}>
+          {key}
+        </option>
+      ))}
+    </select>
+
+    <HeroTable heroes={heroes} feature={feature} />
+  </div>
+);
 }
 
 export default App;
