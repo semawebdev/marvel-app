@@ -14,7 +14,6 @@ export const FeatureSelect = ({ feature, onChange }) => {
           <option value="">--Please choose an option--</option>
           {Object.entries(features).map(([key, value]) => (
             <option key={key} value={value}>
-              {key}
               {value}
             </option>
           ))}
