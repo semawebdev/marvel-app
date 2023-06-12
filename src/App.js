@@ -23,6 +23,29 @@ const getFeature = (hero, feature) => {
   }
 }
 
+const FeatureSelect = ({ feature, onChange }) => {
+  return (
+    <>
+      <label htmlFor="feature-select">Choose a feature:</label>
+
+      <select
+        name="feature"
+        id="feature-select"
+        onChange={onChange}
+        value={feature}
+      >
+        <option value="">--Please choose an option--</option>
+        {Object.entries(features).map(([key, value]) => (
+          <option key={key} value={value}>
+            {key}
+          </option>
+        ))}
+      </select>
+    </>
+  );
+};
+
+
 const HeroCard = ({ hero, feature }) => {
   // TODO: improve the layout
   const thumbnailSrcPath = `${hero.thumbnail.path}/portrait_xlarge.jpg`;
@@ -63,29 +86,14 @@ function App() {
     })
 }, [pageSize])
 
-function handleSelect(event) {
-  setFeature(event.target.value);
+const handleFeatureSelect = (event) => {
+  setFeature(event.target.value)
 }
 
 return (
   <div className="App">
-
-    <label htmlFor="feature-select">Choose a feature of Marvel heroes: </label>
-
-    <select
-      name="feature"
-      id="feature-select"
-      onChange={handleSelect}
-      value={feature}
-    >
-      <option value="">Please choose an option below</option>
-      {Object.entries(features).map(([key, value]) => (
-        <option key={key} value={value}>
-          {key}
-        </option>
-      ))}
-    </select>
-
+    
+    <FeatureSelect heroes={heroes} onChange={handleFeatureSelect}/>
     <HeroTable heroes={heroes} feature={feature} />
   </div>
 );
