@@ -1,4 +1,4 @@
-import logo from '../img/marvel-logo.png'
+import logo from '../../img/marvel-logo.png'
 
 export const Header = () => {
     return (

@@ -1,19 +1,7 @@
 import { useEffect, useState } from 'react';
 import './App.css';
 import { fetchHeroesData } from './services/fetchHeroesData';
-import { FeatureSelect, HeroesTable } from "./components";
-import { Header } from './components/Header';
-
-const PageSelect = ({ isFirstPage, onPrev, onNext }) => {
-  return (
-    <div>
-      <button className="btn" onClick={onPrev} disabled={isFirstPage}>
-        Prev
-      </button>
-      <button className="btn" onClick={onNext}>Next</button>
-    </div>
-  );
-};
+import { Header, PageSelect, FeatureSelect, HeroesTable } from "./components";
 
 function App() {
   const [heroes, setHeroes] = useState([]);
