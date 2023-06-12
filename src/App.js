@@ -57,13 +57,16 @@ const HeroCard = ({ hero, feature }) => {
   );
 };
 
-const HeroTable = ({ isLoading, heroes, feature }) => {
+const HeroTable = ({ error, isLoading, heroes, feature }) => {
   if (feature === '' || heroes.length === 0) {
     return null;
   }
 
   if (isLoading) {
     return <div>Loading...</div>
+  }
+  if (error) {
+    return <div>Oops, there is any error when trying to load the data...</div>
   }
 
   return (
@@ -92,16 +95,18 @@ function App() {
   const [pageSize, setPageSize] = useState(20);
   const [offset, setOffset] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null)
 
   useEffect(() => {
-    setIsLoading(true)
+    setIsLoading(true);
+    setError(null);
 
     fetchHeroesData({ limit: pageSize, offset })
       .then(({ data }) => {
         setHeroes(data.data.results);
       })
       .catch((error) => {
-        // TODO: handle error
+        setError(error)
       })
       .finally(() => {
         setIsLoading(false);
@@ -132,7 +137,7 @@ function App() {
         onPrev={handlePrev}
         onNext={handleNext}
       />
-      <HeroTable isLoading={isLoading} heroes={heroes} feature={feature} />
+      <HeroTable error={error} isLoading={isLoading} heroes={heroes} feature={feature} />
     </div>
   );
 }
