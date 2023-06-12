@@ -82,7 +82,6 @@ const HeroTable = ({ error, isLoading, heroes, feature }) => {
 const PageSelect = ({ isFirstPage, onPrev, onNext }) => {
   return (
     <div>
-      {/* TODO: hide the button when there are no previous page*/}
       <button onClick={onPrev} disabled={isFirstPage}>Prev</button>
       <button onClick={onNext}>Next</button>
     </div>
