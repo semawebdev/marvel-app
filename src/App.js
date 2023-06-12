@@ -2,14 +2,15 @@ import { useEffect, useState } from 'react';
 import './App.css';
 import { fetchHeroesData } from './services/fetchHeroesData';
 import { FeatureSelect, HeroesTable } from "./components";
+import { Header } from './components/Header';
 
 const PageSelect = ({ isFirstPage, onPrev, onNext }) => {
   return (
     <div>
-      <button onClick={onPrev} disabled={isFirstPage}>
+      <button className="btn" onClick={onPrev} disabled={isFirstPage}>
         Prev
       </button>
-      <button onClick={onNext}>Next</button>
+      <button className="btn" onClick={onNext}>Next</button>
     </div>
   );
 };
@@ -55,7 +56,7 @@ function App() {
 
   return (
     <div className="App">
-
+      <Header />
       <FeatureSelect heroes={heroes} onChange={handleFeatureSelect} />
       <PageSelect
         isFirstPage={isFirstPage}
