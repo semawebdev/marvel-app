@@ -8,8 +8,9 @@ const MARVEL_API_ENDPOINT = "v1/public/characters"
 export const fetchHeroesData = async ({
     timestamp = 1,
     limit = 20,
+    offset = 0,
   } = {}) => {
     return axios(
-      `${MARVEL_API_HOSTNAME}/${MARVEL_API_ENDPOINT}?ts=${timestamp}&apikey=${MARVEL_API_KEY}&hash=${HASH}&limit=${limit}`
+      `${MARVEL_API_HOSTNAME}/${MARVEL_API_ENDPOINT}?ts=${timestamp}&apikey=${MARVEL_API_KEY}&hash=${HASH}&limit=${limit}&offset=${offset}`
     );
   };

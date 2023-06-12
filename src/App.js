@@ -72,31 +72,53 @@ const HeroTable = ({ heroes, feature }) => {
   );
 };
 
+const PageSelect = ({ offset, onPrev, onNext }) => {
+  return (
+    <div>
+      {/* TODO: hide the button when there are no previous page*/}
+      <button onClick={onPrev}>Prev</button>
+      <button onClick={onNext}>Next</button>
+    </div>
+  );
+};
 
 function App() {
   const [heroes, setHeroes] = useState([]);
   const [feature, setFeature] = useState("");
   const [pageSize, setPageSize] = useState(20);
+  const [offset, setOffset] = useState(0);
 
   useEffect(() => {
     // TODO: handle loading state
-    fetchHeroesData({ limit: pageSize })
+    fetchHeroesData({ limit: pageSize, offset })
       .then(({ data }) => {
-      setHeroes(data.data.results);
-    })
-}, [pageSize])
+        setHeroes(data.data.results);
+      })
+      .catch((error) => {
+        // TODO: handle error
+      })
+  }, [offset, pageSize]);
 
-const handleFeatureSelect = (event) => {
-  setFeature(event.target.value)
-}
+  const handleFeatureSelect = (event) => {
+    setFeature(event.target.value)
+  }
 
-return (
-  <div className="App">
-    
-    <FeatureSelect heroes={heroes} onChange={handleFeatureSelect}/>
-    <HeroTable heroes={heroes} feature={feature} />
-  </div>
-);
+  const handlePrev = () => {
+    setOffset((curr) => Math.max(0, curr - pageSize));
+  };
+
+  const handleNext = () => {
+    setOffset((curr) => curr + pageSize);
+  };
+
+  return (
+    <div className="App">
+
+      <FeatureSelect heroes={heroes} onChange={handleFeatureSelect} />
+      <PageSelect offset={offset} onPrev={handlePrev} onNext={handleNext} />
+      <HeroTable heroes={heroes} feature={feature} />
+    </div>
+  );
 }
 
 export default App;
