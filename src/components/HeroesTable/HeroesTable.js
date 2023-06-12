@@ -15,7 +15,7 @@ export const HeroesTable = ({ error, isLoading, heroes, feature }) => {
     return (
         <div>
             {heroes.map((hero) => (
-                <HeroCard hero={hero} feature={feature} />
+                <HeroCard key={hero.id} hero={hero} feature={feature} />
             ))}
             <div>Number of heroes displayed: {heroes.length}</div>
         </div>
