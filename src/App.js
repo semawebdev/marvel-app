@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import './App.css';
-import { fetchHeroesData } from './fetchHeroesData';
+import { fetchHeroesData } from './services/fetchHeroesData';
 import { FeatureSelect, HeroesTable } from "./components";
 
 const PageSelect = ({ isFirstPage, onPrev, onNext }) => {
