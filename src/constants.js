@@ -1,4 +1,6 @@
 export const features = {
     name: "Name",
-    story: "Story",
+    story: "Stories",
+    comic: "Comics",
+    series: "Series",
 }

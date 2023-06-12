@@ -15,6 +15,7 @@ export const FeatureSelect = ({ feature, onChange }) => {
           {Object.entries(features).map(([key, value]) => (
             <option key={key} value={value}>
               {key}
+              {value}
             </option>
           ))}
         </select>
