@@ -76,11 +76,11 @@ const HeroTable = ({ isLoading, heroes, feature }) => {
   );
 };
 
-const PageSelect = ({ offset, onPrev, onNext }) => {
+const PageSelect = ({ isFirstPage, onPrev, onNext }) => {
   return (
     <div>
       {/* TODO: hide the button when there are no previous page*/}
-      <button onClick={onPrev}>Prev</button>
+      <button onClick={onPrev} disabled={isFirstPage}>Prev</button>
       <button onClick={onNext}>Next</button>
     </div>
   );
@@ -106,8 +106,8 @@ function App() {
       .finally(() => {
         setIsLoading(false);
       });
-  }, 
-  [offset, pageSize]);
+  },
+    [offset, pageSize]);
 
   const handleFeatureSelect = (event) => {
     setFeature(event.target.value)
@@ -121,11 +121,17 @@ function App() {
     setOffset((curr) => curr + pageSize);
   };
 
+  const isFirstPage = offset === 0;
+
   return (
     <div className="App">
 
       <FeatureSelect heroes={heroes} onChange={handleFeatureSelect} />
-      <PageSelect offset={offset} onPrev={handlePrev} onNext={handleNext} />
+      <PageSelect
+        isFirstPage={isFirstPage}
+        onPrev={handlePrev}
+        onNext={handleNext}
+      />
       <HeroTable isLoading={isLoading} heroes={heroes} feature={feature} />
     </div>
   );
