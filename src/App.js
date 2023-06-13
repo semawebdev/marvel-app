@@ -9,7 +9,8 @@ function App() {
   const [pageSize, setPageSize] = useState(20);
   const [offset, setOffset] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null)
+  const [error, setError] = useState(null);
+  const [isOptionSelected, setIsOptionSelected] = useState(false);
 
   useEffect(() => {
     setIsLoading(true);
@@ -29,7 +30,9 @@ function App() {
     [offset, pageSize]);
 
   const handleFeatureSelect = (event) => {
-    setFeature(event.target.value)
+    const selectedOption = event.target.value;
+    setIsOptionSelected(selectedOption !== "");
+    setFeature(selectedOption);
   };
 
   const handlePrev = () => {
@@ -50,6 +53,7 @@ function App() {
         isFirstPage={isFirstPage}
         onPrev={handlePrev}
         onNext={handleNext}
+        isOptionSelected={isOptionSelected}
       />
       <HeroesTable
         error={error}
