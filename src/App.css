@@ -1,6 +1,7 @@
 html,
 body {
   background: url('./img/marvelbg.jpg') no-repeat center center/cover;
+  background-color: black;
   height: 100vh;
   color: #fff;
   font-family: Arial, Helvetica, sans-serif;
@@ -41,3 +42,18 @@ header img {
   margin: 12px;
 }
 
+.dropdown {
+  height: 30px;
+  border: 1px;
+  font-size: 16px;
+  background-color: #eee;
+  border-radius: 5px;
+  box-shadow: 2px 2px #ccc;
+}
+
+.label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 18px;
+  font-weight: bold;
+}
