@@ -9,12 +9,11 @@ body {
 
 .HeroesTable {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 8px;
-  row-gap: 64px;
-  column-gap: 8px;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   grid-auto-rows: minmax(100px, auto);
-  margin: 32px;
+  margin: 50px;
+  row-gap: 30px;
+  column-gap: 20px;
 }
 
 header {
@@ -58,23 +57,39 @@ header img {
   font-weight: bold;
 }
 
-@media (max-width: 768px) {
+.heroCard img {
+  width: 200px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 16px;
+}
+
+@media (max-width: 1200px) {
   .HeroesTable {
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
   }
   
   header img {
     width: 150px;
   }
+
+  .heroCard img {
+    width: 150px;
+  }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 768px) {
   .HeroesTable {
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     row-gap: 32px;
   }
   
   header img {
     width: 100px;
+  }
+
+  .heroCard img {
+    width: 150px;
   }
 }
