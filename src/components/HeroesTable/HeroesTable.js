@@ -13,7 +13,7 @@ export const HeroesTable = ({ error, isLoading, heroes, feature }) => {
     }
 
     return (
-        <div className="HeroesTable">
+        <div className="HeroesTable" data-testid="HeroesTable">
             {heroes.map((hero) => (
                 <HeroCard key={hero.id} hero={hero} feature={feature} />
             ))}

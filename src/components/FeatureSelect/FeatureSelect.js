@@ -11,6 +11,7 @@ export const FeatureSelect = ({ feature, onChange }) => {
           onChange={onChange}
           value={feature}
           className="dropdown"
+          data-testid="featureSelect"
         >
           <option value="">Please choose an option</option>
           {Object.entries(features).map(([key, value]) => (
