@@ -13,8 +13,8 @@ const StoryFeature = ({ hero, feature }) => {
 const ComicsFeature = ({ hero, feature }) => {
   return (
     <ul>
-      {hero.comics.items.map((story) => (
-        <li key={story.name}>{story.name}</li>
+      {hero.comics.items.map((comics) => (
+        <li key={comics.name}>{comics.name}</li>
       ))}
     </ul>
   );
@@ -23,8 +23,8 @@ const ComicsFeature = ({ hero, feature }) => {
 const SeriesFeature = ({ hero, feature }) => {
   return (
     <ul>
-      {hero.series.items.map((story) => (
-        <li key={story.name}>{story.name}</li>
+      {hero.series.items.map((series) => (
+        <li key={series.name}>{series.name}</li>
       ))}
     </ul>
   );
