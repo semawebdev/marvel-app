@@ -3,7 +3,7 @@ import { features } from '../../constants';
 export const FeatureSelect = ({ feature, onChange }) => {
     return (
       <>
-        <label for="feature-select" className="label">Choose a feature:</label>
+        <label htmlFor="feature-select" className="label">Choose a feature:</label>
   
         <select
           name="feature"
