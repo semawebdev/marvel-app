@@ -14,7 +14,7 @@ The Marvel App is a web application that allows users to explore information abo
 
 1. Clone the repository:
 ```console
-$ git clone https://github.com/semawebdev/marvel-app
+$ git clone git@gitlab.com:isemagul/marvel-app.git
 ```
 2. Install dependencies:
 ```console
