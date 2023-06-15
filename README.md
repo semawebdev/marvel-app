@@ -39,8 +39,8 @@ $ npm install
 - In this `.env` file add your `<REACT_APP_MARVEL_API_KEY>` and `<REACT_APP_HASH>` with your Marvel API keys:
 
   ```
-  $ REACT_APP_MARVEL_PUBLIC_KEY=<YOUR_PUBLIC_KEY>
-  $ REACT_APP_HASH=<YOUR_HASHED_PRIVATE_KEY>
+  REACT_APP_MARVEL_PUBLIC_KEY=<YOUR_PUBLIC_KEY>
+  REACT_APP_HASH=<YOUR_HASHED_PRIVATE_KEY>
   ```
 
 5. Start the development server:
