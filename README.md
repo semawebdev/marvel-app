@@ -1,6 +1,7 @@
 # Marvel App
 
 The Marvel App is a web application that allows users to explore information about Marvel comics, characters, and movies. It is built using React and fetches data from the Marvel API.
+[You can access the website by clicking here!](https://marvel-app-nine-gules.vercel.app/)
 
 ## Getting Started
 
